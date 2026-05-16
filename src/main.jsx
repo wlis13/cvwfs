@@ -4,13 +4,16 @@ import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 import { CvProvider } from './context/CvContext.jsx'
+import { ThemeProvider } from './context/ThemeContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <CvProvider>
-        <App />
-      </CvProvider>
+      <ThemeProvider>
+        <CvProvider>
+          <App />
+        </CvProvider>
+      </ThemeProvider>
     </BrowserRouter>
   </StrictMode>,
 )

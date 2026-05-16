@@ -3,22 +3,36 @@ import {
   ArrowUpRight,
   BriefcaseBusiness,
   Building2,
+  ClipboardList,
   Code2,
+  HardHat,
+  Hammer,
   Mail,
   MapPinned,
   MessageCircle,
+  Moon,
   ShieldCheck,
   Sparkles,
+  Sun,
   Workflow,
 } from 'lucide-react'
 import { NavLink, Route as RouterRoute, Routes } from 'react-router-dom'
 import { useCv } from './context/useCv'
+import { useTheme } from './context/useTheme'
 
 const iconMap = {
   linkedin: BriefcaseBusiness,
   github: Code2,
   whatsapp: MessageCircle,
   email: Mail,
+}
+
+const skillIconMap = {
+  Frontend: Code2,
+  Mobile: MessageCircle,
+  'Backend & Dados': ClipboardList,
+  Gestão: HardHat,
+  Revestimentos: Hammer,
 }
 
 const reveal = {
@@ -47,6 +61,8 @@ function Section({ eyebrow, title, children, className = '' }) {
 
 function Header() {
   const { profile } = useCv()
+  const { theme, toggleTheme } = useTheme()
+  const ThemeIcon = theme === 'dark' ? Sun : Moon
 
   return (
     <header className="site-header">
@@ -59,10 +75,20 @@ function Header() {
         <a href="#skills">Skills</a>
         <a href="#projetos">Projetos</a>
       </nav>
-      <a className="header-contact" href={profile.socials[3].href}>
-        <Mail size={18} />
-        Contacto
-      </a>
+      <div className="header-actions">
+        <button
+          aria-label={theme === 'dark' ? 'Ativar tema claro' : 'Ativar tema escuro'}
+          className="theme-toggle"
+          onClick={toggleTheme}
+          type="button"
+        >
+          <ThemeIcon size={18} />
+        </button>
+        <a className="header-contact" href={profile.socials[3].href}>
+          <Mail size={18} />
+          Contacto
+        </a>
+      </div>
     </header>
   )
 }
@@ -185,17 +211,23 @@ function Skills() {
   return (
     <Section eyebrow="Stack / Skills" title="Dashboard de competências" className="skills-section">
       <div className="skills-grid" id="skills">
-        {skills.map((skill) => (
-          <article className="skill-card" key={skill.category}>
-            <Code2 size={24} />
-            <h3>{skill.category}</h3>
-            <div className="badge-row">
-              {skill.items.map((item) => (
-                <span key={item}>{item}</span>
-              ))}
-            </div>
-          </article>
-        ))}
+        {skills.map((skill) => {
+          const Icon = skillIconMap[skill.category] ?? Code2
+
+          return (
+            <article className="skill-card" key={skill.category}>
+              <div className="skill-icon">
+                <Icon size={24} />
+              </div>
+              <h3>{skill.category}</h3>
+              <div className="badge-row">
+                {skill.items.map((item) => (
+                  <span key={item}>{item}</span>
+                ))}
+              </div>
+            </article>
+          )
+        })}
       </div>
     </Section>
   )
@@ -209,7 +241,10 @@ function Projects() {
       <div className="projects-grid" id="projetos">
         {projects.map((project, index) => (
           <article className={`project-card ${index === 0 ? 'featured' : ''}`} key={project.name}>
-            <div className="project-visual">
+            <div
+              className="project-visual"
+              style={project.image ? { '--project-image': `url(${project.image})` } : undefined}
+            >
               <Sparkles size={28} />
               <span>{project.name}</span>
             </div>
@@ -224,9 +259,16 @@ function Projects() {
               </div>
               <div className="project-links">
                 {project.links.map((link) => (
-                  <a key={link.label} href={link.href}>
+                  <a
+                    className={!link.href ? 'disabled' : undefined}
+                    key={link.label}
+                    href={link.href || undefined}
+                    target={link.href?.startsWith('http') ? '_blank' : undefined}
+                    rel={link.href?.startsWith('http') ? 'noreferrer' : undefined}
+                    aria-disabled={!link.href}
+                  >
                     {link.label}
-                    <ArrowUpRight size={17} />
+                    {link.href && <ArrowUpRight size={17} />}
                   </a>
                 ))}
               </div>
