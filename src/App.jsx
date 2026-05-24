@@ -40,22 +40,29 @@ const reveal = {
   visible: { opacity: 1, y: 0 },
 }
 
-function Section({ eyebrow, title, children, className = '' }) {
+function Section({ eyebrow, title, children, className = '', animated = true }) {
+  const Component = animated ? motion.section : 'section'
+  const motionProps = animated
+    ? {
+        variants: reveal,
+        initial: 'hidden',
+        whileInView: 'visible',
+        viewport: { once: true, amount: 0.2 },
+        transition: { duration: 0.55, ease: 'easeOut' },
+      }
+    : {}
+
   return (
-    <motion.section
+    <Component
       className={`section ${className}`}
-      variants={reveal}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.55, ease: 'easeOut' }}
+      {...motionProps}
     >
       <div className="section-heading">
         <span>{eyebrow}</span>
         <h2>{title}</h2>
       </div>
       {children}
-    </motion.section>
+    </Component>
   )
 }
 
@@ -173,7 +180,12 @@ function Experience() {
   const { experiences } = useCv()
 
   return (
-    <Section eyebrow="Experiência profissional" title="Linha técnica e empresarial" className="experience-section">
+    <Section
+      animated={false}
+      eyebrow="Experiência profissional"
+      title="Linha técnica e empresarial"
+      className="experience-section"
+    >
       <div className="timeline" id="experiencia">
         {experiences.map((experience) => (
           <article className="timeline-item" key={experience.company}>

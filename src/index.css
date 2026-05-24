@@ -418,6 +418,8 @@ h1 {
   display: grid;
   grid-template-columns: 64px 1fr;
   gap: 22px;
+  content-visibility: auto;
+  contain-intrinsic-size: 260px;
 }
 
 .company-logo {
@@ -832,11 +834,13 @@ h1 {
 
   .timeline::before {
     left: 21px;
+    background: rgba(233, 189, 80, 0.45);
   }
 
   .timeline-item {
     grid-template-columns: 44px 1fr;
     gap: 14px;
+    contain-intrinsic-size: 330px;
   }
 
   .company-logo {
@@ -849,6 +853,10 @@ h1 {
   .skill-card,
   .cert-grid article {
     padding: 20px;
+  }
+
+  .timeline-card {
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.14);
   }
 
   .timeline-head {
