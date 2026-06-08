@@ -2,7 +2,7 @@ import profilePhoto from '../assets/wlisses-fernando-dos-santos.jpeg'
 import accommodationManagementBackground from '../assets/background-images/accommodation-management-background.png'
 import afribondBackground from '../assets/background-images/afribond-background.png'
 import appMusicalAprendizadoBackground from '../assets/background-images/App-Musical-Aprendizado-background.png'
-import ecommerceLalefBackground from '../assets/background-images/e-commerce-lalef-front-end-background.png'
+import gfsAgrolifeBackground from '../assets/background-images/e-commerce-lalef-front-end-background.png'
 import gestorObrasBackground from '../assets/background-images/gestor-obras-background.png'
 
 export const cvData = {
@@ -190,13 +190,13 @@ export const cvData = {
       links: [{ label: 'APK em desenvolvimento', href: null }],
     },
     {
-      name: 'E-commerce',
-      headline: 'Interface web para e-commerce com foco em vitrine, navegação e conversão.',
+      name: 'GFS Agrolife Company',
+      headline: 'Website institucional para apresentar soluções industriais, contacto comercial e proposta internacional.',
       description:
-        'Projeto front-end ainda em desenvolvimento para apresentar produtos, organizar categorias e criar uma experiência de compra clara e responsiva.',
-      image: ecommerceLalefBackground,
-      tech: ['React.js', 'JavaScript', 'CSS', 'Vercel'],
-      links: [{ label: 'Demo', href: 'https://speedy-spares.vercel.app/' }],
+        'Projeto web para comunicar a proposta da GFS Agrolife Company: fornecimento de produtos epoxidicos maritimos certificados CE, equipas locais especializadas e contacto por email e WhatsApp.',
+      image: gfsAgrolifeBackground,
+      tech: ['React.js', 'Vite', 'Node.js', 'Express', 'Vercel'],
+      links: [{ label: 'Demo', href: 'https://gfs-site.vercel.app/' }],
     },
     {
       name: 'Site Afribond',
