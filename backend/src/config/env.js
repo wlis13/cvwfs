@@ -6,5 +6,5 @@ export const env = {
   mongodbUri:
     process.env.MONGODB_URI ??
     (process.env.NODE_ENV === 'production' ? undefined : 'mongodb://127.0.0.1:27017/cvwfs'),
-  corsOrigin: process.env.CORS_ORIGIN ?? 'http://localhost:5173',
+  corsOrigin: process.env.CORS_ORIGIN ?? process.env.CLIENT_URL ?? 'http://localhost:5173',
 }
