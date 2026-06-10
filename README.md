@@ -41,6 +41,8 @@ npm run dev
 npm run dev:frontend
 npm run dev:backend
 npm run build
+npm run build:frontend
+npm run build:backend
 npm run lint
 npm run preview
 npm run start
@@ -76,4 +78,19 @@ O backend fica em `backend` e já inclui:
 
 ## Deploy
 
-O `vercel.json` da raiz está configurado para fazer build do frontend e publicar `frontend/dist`.
+Para o frontend no Vercel:
+
+- Root Directory: `frontend`
+- Framework Preset: `Vite`
+- Build Command: `npm run build`
+- Output Directory: `dist`
+
+Para o backend no Vercel:
+
+- Root Directory: `backend`
+- Framework Preset: `Other`
+- Build Command: `npm run build`
+- Output Directory: deixe vazio
+- Environment Variables: configure `MONGODB_URI`, `CORS_ORIGIN` e `NODE_ENV`
+
+O backend usa `backend/api/index.js` como função serverless e mantém as rotas em `/api`.

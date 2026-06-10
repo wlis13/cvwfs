@@ -11,6 +11,8 @@
     "dev:frontend": "npm run dev -w @cvwfs/frontend",
     "dev:backend": "npm run dev -w @cvwfs/backend",
     "build": "npm run build -w @cvwfs/frontend",
+    "build:frontend": "npm run build -w @cvwfs/frontend",
+    "build:backend": "npm run build -w @cvwfs/backend",
     "lint": "npm run lint --workspaces --if-present",
     "preview": "npm run preview -w @cvwfs/frontend",
     "start": "npm run start -w @cvwfs/backend"
