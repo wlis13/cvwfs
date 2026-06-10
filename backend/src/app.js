@@ -9,6 +9,14 @@ import { apiRouter } from './routes/index.js'
 
 export const app = express()
 
+app.get('/', (_req, res) => {
+  res.json({
+    name: 'cvwfs-backend',
+    status: 'ok',
+    health: '/api/health',
+  })
+})
+
 app.use(helmet())
 app.use(cors({ origin: env.corsOrigin }))
 app.use(express.json({ limit: '1mb' }))

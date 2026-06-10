@@ -27,12 +27,20 @@ function registerConnectionListeners() {
 export async function connectDatabase() {
   registerConnectionListeners()
 
+  if (!env.mongodbUri) {
+    const error = new Error('MONGODB_URI is not configured')
+    error.statusCode = 503
+    throw error
+  }
+
   if (mongoose.connection.readyState === 1) {
     return mongoose.connection
   }
 
   if (!connectionPromise) {
-    connectionPromise = mongoose.connect(env.mongodbUri).catch((error) => {
+    connectionPromise = mongoose.connect(env.mongodbUri, {
+      serverSelectionTimeoutMS: 5000,
+    }).catch((error) => {
       connectionPromise = undefined
       throw error
     })
