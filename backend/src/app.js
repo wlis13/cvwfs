@@ -16,7 +16,9 @@ const corsOptions = {
       return
     }
 
-    callback(new Error(`CORS origin not allowed: ${origin}`))
+    const error = new Error(`CORS origin not allowed: ${origin}`)
+    error.statusCode = 403
+    callback(error)
   },
 }
 
