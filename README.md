@@ -1,16 +1,79 @@
-# React + Vite
+# CVWFS Monorepo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Monorepo do CVWFS com frontend React/Vite e backend Node.js com MongoDB/Mongoose.
 
-Currently, two official plugins are available:
+## Estrutura
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```text
+frontend/   App React + Vite existente
+backend/    API Node.js + Express + Mongoose
+```
 
-## React Compiler
+## Requisitos
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Node.js
+- npm
+- MongoDB local ou uma connection string MongoDB Atlas
 
-## Expanding the ESLint configuration
+## Instalação
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+```
+
+## Ambiente do Backend
+
+Crie um arquivo `backend/.env` com base em `backend/.env.example`:
+
+```env
+NODE_ENV=development
+PORT=4000
+MONGODB_URI=mongodb://127.0.0.1:27017/cvwfs
+CORS_ORIGIN=http://localhost:5173
+```
+
+## Scripts
+
+Execute a partir da raiz:
+
+```bash
+npm run dev
+npm run dev:frontend
+npm run dev:backend
+npm run build
+npm run lint
+npm run preview
+npm run start
+```
+
+## Frontend
+
+O frontend fica em `frontend` e mantém a estrutura Vite:
+
+```text
+frontend/
+  index.html
+  public/
+  src/
+  vite.config.js
+  eslint.config.js
+```
+
+## Backend
+
+O backend fica em `backend` e já inclui:
+
+- Express
+- Mongoose
+- dotenv
+- CORS
+- Helmet
+- Morgan
+- Nodemon
+- ESLint
+- Health check em `GET /api/health`
+- Rota inicial de contacto em `POST /api/contact`
+
+## Deploy
+
+O `vercel.json` da raiz está configurado para fazer build do frontend e publicar `frontend/dist`.
