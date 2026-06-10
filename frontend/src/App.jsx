@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 import {
   ArrowUpRight,
   BriefcaseBusiness,
@@ -19,6 +20,7 @@ import {
 import { NavLink, Route as RouterRoute, Routes } from 'react-router-dom'
 import { useCv } from './context/useCv'
 import { useTheme } from './context/useTheme'
+import { sendContactMessage } from './lib/api'
 
 const iconMap = {
   linkedin: BriefcaseBusiness,
@@ -67,7 +69,6 @@ function Section({ eyebrow, title, children, className = '', animated = true }) 
 }
 
 function Header() {
-  const { profile } = useCv()
   const { theme, toggleTheme } = useTheme()
   const ThemeIcon = theme === 'dark' ? Sun : Moon
 
@@ -81,6 +82,7 @@ function Header() {
         <a href="#experiencia">Experiência</a>
         <a href="#skills">Skills</a>
         <a href="#projetos">Projetos</a>
+        <a href="#contacto">Contacto</a>
       </nav>
       <div className="header-actions">
         <button
@@ -91,7 +93,7 @@ function Header() {
         >
           <ThemeIcon size={18} />
         </button>
-        <a className="header-contact" href={profile.socials[3].href}>
+        <a className="header-contact" href="#contacto">
           <Mail size={18} />
           Contacto
         </a>
@@ -339,6 +341,85 @@ function Certifications() {
   )
 }
 
+function Contact() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  })
+  const [status, setStatus] = useState('idle')
+  const [feedback, setFeedback] = useState('')
+
+  function handleChange(event) {
+    setFormData((current) => ({
+      ...current,
+      [event.target.name]: event.target.value,
+    }))
+  }
+
+  async function handleSubmit(event) {
+    event.preventDefault()
+    setStatus('loading')
+    setFeedback('')
+
+    try {
+      await sendContactMessage(formData)
+      setFormData({ name: '', email: '', message: '' })
+      setStatus('success')
+      setFeedback('Mensagem enviada com sucesso.')
+    } catch (error) {
+      setStatus('error')
+      setFeedback(error.message)
+    }
+  }
+
+  return (
+    <Section eyebrow="Contacto" title="Envie uma mensagem" className="contact-section">
+      <form className="contact-form" id="contacto" onSubmit={handleSubmit}>
+        <label>
+          Nome
+          <input
+            autoComplete="name"
+            name="name"
+            onChange={handleChange}
+            required
+            type="text"
+            value={formData.name}
+          />
+        </label>
+        <label>
+          Email
+          <input
+            autoComplete="email"
+            name="email"
+            onChange={handleChange}
+            required
+            type="email"
+            value={formData.email}
+          />
+        </label>
+        <label>
+          Mensagem
+          <textarea
+            name="message"
+            onChange={handleChange}
+            required
+            rows="6"
+            value={formData.message}
+          />
+        </label>
+        <div className="contact-actions">
+          <button disabled={status === 'loading'} type="submit">
+            <Mail size={18} />
+            {status === 'loading' ? 'Enviando...' : 'Enviar mensagem'}
+          </button>
+          {feedback && <p className={`form-feedback ${status}`}>{feedback}</p>}
+        </div>
+      </form>
+    </Section>
+  )
+}
+
 function Footer() {
   const { profile } = useCv()
 
@@ -374,6 +455,7 @@ function HomePage() {
         <Projects />
         <International />
         <Certifications />
+        <Contact />
       </main>
       <Footer />
     </>
