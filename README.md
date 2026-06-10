@@ -30,6 +30,7 @@ NODE_ENV=development
 PORT=4000
 MONGODB_URI=mongodb://127.0.0.1:27017/cvwfs
 CORS_ORIGIN=http://localhost:5173
+CLIENT_URL=http://localhost:5173
 ```
 
 ## Scripts
@@ -91,6 +92,6 @@ Para o backend no Vercel:
 - Framework Preset: `Other`
 - Build Command: `npm run build`
 - Output Directory: deixe vazio
-- Environment Variables: configure `MONGODB_URI`, `CORS_ORIGIN` e `NODE_ENV`
+- Environment Variables: configure `MONGODB_URI`, `CORS_ORIGIN` ou `CLIENT_URL`, e `NODE_ENV`
 
 O backend usa `backend/api/index.js` como função serverless e mantém as rotas em `/api`.
