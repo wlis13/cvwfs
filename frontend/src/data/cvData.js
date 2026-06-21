@@ -205,7 +205,7 @@ export const cvData = {
         'Projeto web desenvolvido para organizar o acompanhamento de piscinas, centralizar informações operacionais e facilitar a gestão de atendimentos e tarefas recorrentes.',
       image: gestorPiscinasBackground,
       tech: ['React.js', 'Gestão', 'Serviços', 'Vercel'],
-      links: [{ label: 'Demo', href: 'https://piscinas-rui.vercel.app/' }],
+      links: [{ label: 'Demo', href: 'https://gestortecnicopiscinas.vercel.app/' }],
     },
     {
       name: 'Accommodation Management',
