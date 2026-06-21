@@ -1,9 +1,9 @@
 ﻿import profilePhoto from '../assets/wlisses-fernando-dos-santos.jpeg'
-import accommodationManagementBackground from '../assets/background-images/accommodation-management-background.png'
-import afribondBackground from '../assets/background-images/afribond-background.png'
-import mp3musicfreeBackground from '../assets/background-images/mp3musicfree-background.png'
-import gfsAgrolifeBackground from '../assets/background-images/e-commerce-lalef-front-end-background.png'
-import gestorObrasBackground from '../assets/background-images/gestor-obras-background.png'
+import accommodationManagementBackground from '../assets/background-images/accommodation-management-generated-background.png'
+import gfsAgrolifeBackground from '../assets/background-images/gfs-agrolife-generated-background.png'
+import gestorObrasBackground from '../assets/background-images/gestor-obras-generated-background.png'
+import gestorPiscinasBackground from '../assets/background-images/gestor-piscinas-generated-background.png'
+import mp3musicfreeBackground from '../assets/background-images/mp3musicfree-generated-background.png'
 
 export const cvData = {
   profile: {
@@ -203,7 +203,7 @@ export const cvData = {
       headline: 'Sistema web para gestão de serviços, clientes e operações de manutenção de piscinas.',
       description:
         'Projeto web desenvolvido para organizar o acompanhamento de piscinas, centralizar informações operacionais e facilitar a gestão de atendimentos e tarefas recorrentes.',
-      image: afribondBackground,
+      image: gestorPiscinasBackground,
       tech: ['React.js', 'Gestão', 'Serviços', 'Vercel'],
       links: [{ label: 'Demo', href: 'https://piscinas-rui.vercel.app/' }],
     },
