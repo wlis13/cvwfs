@@ -9,9 +9,23 @@ import { apiRouter } from './routes/index.js'
 
 export const app = express()
 
+function originMatchesPattern(origin, pattern) {
+  if (!pattern.includes('*')) {
+    return origin === pattern
+  }
+
+  const regex = new RegExp(`^${pattern.replace(/[.+?^${}()|[\]\\]/g, '\\$&').replaceAll('*', '.*')}$`)
+  return regex.test(origin)
+}
+
+function isAllowedOrigin(origin) {
+  return env.corsOrigins.some((allowedOrigin) => originMatchesPattern(origin, allowedOrigin))
+}
+
 const corsOptions = {
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   origin(origin, callback) {
-    if (!origin || env.corsOrigins.includes(origin)) {
+    if (!origin || isAllowedOrigin(origin)) {
       callback(null, true)
       return
     }
@@ -32,6 +46,7 @@ app.get('/', (_req, res) => {
 
 app.use(helmet())
 app.use(cors(corsOptions))
+app.options(/.*/, cors(corsOptions))
 app.use(express.json({ limit: '1mb' }))
 app.use(express.urlencoded({ extended: true }))
 
