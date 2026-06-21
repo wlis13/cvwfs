@@ -12,7 +12,7 @@ export const cvData = {
     location: 'Portugal',
     photo: profilePhoto,
     summary:
-      'Especialista em revestimentos industriais em transição estratégica para desenvolvimento web e software de gestão de obras.',
+      'Aplicador de revestimentos industriais em transição estratégica para desenvolvimento web e software de gestão de obras.',
     pitch:
       'Unifico experiência prática em obras, gestão técnica e desenvolvimento de software para criar soluções digitais que resolvem problemas reais das equipes em campo.',
     socials: [
