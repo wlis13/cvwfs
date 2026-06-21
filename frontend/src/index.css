@@ -566,15 +566,18 @@ h1 {
 
 .project-visual span {
   display: block;
-  width: min(86%, 520px);
+  width: min(92%, 520px);
   font-family: Manrope, sans-serif;
-  font-size: clamp(1.7rem, 3.5vw, 3.35rem);
+  font-size: 3.1rem;
   font-weight: 800;
   color: var(--white);
   line-height: 1.05;
   text-align: center;
   text-shadow: 0 8px 28px rgba(0, 0, 0, 0.7);
-  overflow-wrap: anywhere;
+  hyphens: manual;
+  overflow-wrap: normal;
+  text-wrap: balance;
+  word-break: normal;
   justify-self: center;
   z-index: 2;
 }
@@ -947,6 +950,11 @@ h1 {
 
   .project-visual {
     min-height: 220px;
+  }
+
+  .project-visual span {
+    font-size: 2.25rem;
+    line-height: 1.08;
   }
 
   .map-card {
