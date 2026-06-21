@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+﻿import { motion } from 'framer-motion'
 import { useState } from 'react'
 import {
   ArrowUpRight,
@@ -82,7 +82,7 @@ function Header() {
         <a href="#experiencia">Experiência</a>
         <a href="#skills">Skills</a>
         <a href="#projetos">Projetos</a>
-        <a href="#contacto">Contacto</a>
+        <a href="#contato">Contato</a>
       </nav>
       <div className="header-actions">
         <button
@@ -93,9 +93,9 @@ function Header() {
         >
           <ThemeIcon size={18} />
         </button>
-        <a className="header-contact" href="#contacto">
+        <a className="header-contact" href="#contato">
           <Mail size={18} />
-          Contacto
+          Contato
         </a>
       </div>
     </header>
@@ -374,8 +374,8 @@ function Contact() {
   }
 
   return (
-    <Section eyebrow="Contacto" title="Envie uma mensagem" className="contact-section">
-      <form className="contact-form" id="contacto" onSubmit={handleSubmit}>
+    <Section eyebrow="Contato" title="Envie uma mensagem" className="contact-section">
+      <form className="contact-form" id="contato" onSubmit={handleSubmit}>
         <label>
           Nome
           <input
@@ -472,3 +472,4 @@ function App() {
 }
 
 export default App
+
