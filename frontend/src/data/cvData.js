@@ -199,13 +199,13 @@ export const cvData = {
       links: [{ label: 'Demo', href: 'https://gfs-site.vercel.app/' }],
     },
     {
-      name: 'Site Afribond',
-      headline: 'Website institucional para apresentação de marca, serviços e posicionamento.',
+      name: 'GestorPiscinas',
+      headline: 'Sistema web para gestão de serviços, clientes e operações de manutenção de piscinas.',
       description:
-        'Projeto front-end ainda em desenvolvimento para comunicar a presença digital da Afribond com navegação objetiva e visual profissional.',
+        'Projeto web desenvolvido para organizar o acompanhamento de piscinas, centralizar informações operacionais e facilitar a gestão de atendimentos e tarefas recorrentes.',
       image: afribondBackground,
-      tech: ['React.js', 'Landing Page', 'UI', 'Vercel'],
-      links: [{ label: 'Demo', href: 'https://afribond-site.vercel.app/' }],
+      tech: ['React.js', 'Gestão', 'Serviços', 'Vercel'],
+      links: [{ label: 'Demo', href: 'https://piscinas-rui.vercel.app/' }],
     },
     {
       name: 'Accommodation Management',
