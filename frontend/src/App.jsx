@@ -49,7 +49,7 @@ function Section({ eyebrow, title, children, className = '', animated = true }) 
         variants: reveal,
         initial: 'hidden',
         whileInView: 'visible',
-        viewport: { once: true, amount: 0.2 },
+        viewport: { once: true, amount: 'some' },
         transition: { duration: 0.55, ease: 'easeOut' },
       }
     : {}
@@ -251,7 +251,12 @@ function Projects() {
   const { projects } = useCv()
 
   return (
-    <Section eyebrow="Projetos" title="Software nascido de problemas reais" className="projects-section">
+    <Section
+      animated={false}
+      eyebrow="Projetos"
+      title="Software nascido de problemas reais"
+      className="projects-section"
+    >
       <div className="projects-grid" id="projetos">
         {projects.map((project, index) => (
           <article className={`project-card ${index === 0 ? 'featured' : ''}`} key={project.name}>
